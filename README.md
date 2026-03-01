@@ -137,7 +137,7 @@
             { id: 2, name: "Elden Ring", price: "1599 грн", rating: 5, img: "https://img.youtube.com/vi/a8k8R0Q2ubY/maxresdefault.jpg", desc: "Епічна пригода в Міжзем'ї від FromSoftware." },
             { id: 3, name: "The Witcher 3", price: "499 грн", rating: 5, img: "https://staticdelivery.nexusmods.com/mods/952/images/thumbnails/4996/4996-1595252155-1133603551.jpeg", desc: "Легендарна історія Геральта з Рівії." },
             { id: 4, name: "God of War", price: "1199 грн", rating: 4, img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/mixcollage-08-dec-2024-01-22-pm-530.jpg", desc: "Шлях Кратоса та Атрея у світі скандинавських міфів." } 
-            ,{ id: 5, name: "Grand Theft Auto V", price: "1537 грн", rating: 5, img: "https://c-ssl.dtstatic.com/uploads/item/201501/24/20150124110653_nR2ti.thumb.400_0.jpeg", desc: "гра дети граєш за 3 злопця і проходиш місій." } 
+            ,{ id: 5, name: "Grand Theft Auto V", price: "1537 грн", rating: 5, img: "https://tse2.mm.bing.net/th/id/OIP.SebWKPO36WWlvFk3eu80FgAAAA?w=205&h=256&rs=1&pid=ImgDetMain&o=7&rm=3", desc: "гра дети граєш за 3 злопця і проходиш місій." } 
         ];
 
         const shop = document.getElementById('shop');
@@ -173,4 +173,3 @@
 </body>
 </html>
  
-        
