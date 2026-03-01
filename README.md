@@ -307,7 +307,101 @@
         });
 
         window.onclick = (e) => { if(e.target.classList.contains('modal-overlay')) closeModal(); }
-    </script>
+    </script> 
+
+<div id="simple-chat" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; font-family: 'Segoe UI', sans-serif;">
+    <button id="chat-open" style="background: linear-gradient(45deg, #4b2bff, #ff416c); color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.3); font-size: 24px; transition: 0.3s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">💬</button>
+
+    <div id="chat-window" style="display: none; width: 320px; height: 450px; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
+        <div style="background: linear-gradient(to right, #4b2bff, #ff416c); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
+            <div>
+                <div style="font-weight: bold; font-size: 14px;">Гейм-консультант вася </div>
+                <div style="font-size: 10px; opacity: 0.8;">● В мережі (відповідає миттєво)</div>
+            </div>
+            <span id="chat-close" style="cursor: pointer; font-size: 24px;">&times;</span>
+        </div>
+        <div id="chat-messages" style="flex: 1; padding: 15px; overflow-y: auto; color: white; font-size: 14px; display: flex; flex-direction: column; gap: 10px; background: #0f0f0f;">
+            <div style="background: #252525; padding: 10px; border-radius: 15px 15px 15px 0; align-self: flex-start; max-width: 85%;">Вітаю в Ultimate GameStore! 👋 Обираєш у що пограти ввечері?</div>
+        </div>
+        <div id="typing-indicator" style="display: none; padding: 5px 15px; color: #888; font-size: 12px; font-style: italic;">Макс друкує...</div>
+        <div style="padding: 15px; background: #1a1a1a; border-top: 1px solid #333; display: flex; gap: 8px;">
+            <input type="text" id="chat-input" placeholder="Запитай про гру..." style="flex: 1; background: #252525; border: 1px solid #444; color: white; padding: 10px; border-radius: 10px; outline: none; font-size: 14px;">
+            <button id="chat-send" style="background: #4b2bff; border: none; color: white; border-radius: 10px; cursor: pointer; padding: 0 15px; font-weight: bold;">➔</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const chatBtn = document.getElementById('chat-open');
+    const chatWin = document.getElementById('chat-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatInput = document.getElementById('chat-input');
+    const chatMsgs = document.getElementById('chat-messages');
+    const chatSend = document.getElementById('chat-send');
+    const typing = document.getElementById('typing-indicator');
+
+    chatBtn.onclick = () => { chatWin.style.display = 'flex'; chatBtn.style.display = 'none'; };
+    chatClose.onclick = () => { chatWin.style.display = 'none'; chatBtn.style.display = 'block'; };
+
+    const scenarios = [
+        { keywords: ['привіт', 'добрий день', 'хай'], reply: "Привіт-привіт! Я допомагаю знайти найкращі ігри. Що тебе цікавить: RPG, екшн чи, можливо, класика?" },
+        { keywords: ['ціна', 'скільки', 'коштує'], reply: "У нас зараз діють круті ціни! Від 499 грн за класику до 1599 грн за новинки. При покупці двох ігор — секретний бонус! 😉" },
+        { keywords: ['cyberpunk', 'кіберпанк'], reply: "Cyberpunk 2077 — це шедевр! Найт-Сіті чекає. До речі, гра йде вже з усіма оновленнями. Береш?" },
+        { keywords: ['відьмак', 'witcher', 'геральт'], reply: "The Witcher 3 — це база. Кращі квести, які я бачив. За таку ціну (499 грн) це майже дарунок!" },
+        { keywords: ['elden ring', 'елден'], reply: "О, ти любиш хардкор? Elden Ring — це гра року. Буде складно, але воно того варте!" },
+        { keywords: ['дякую', 'спасибі'], reply: "Завжди радий допомогти! Якщо обереш гру — просто тисни кнопку 'Додати в кошик'. Вдалих забігів! 🎮" },
+        { keywords: ['хто ти', 'бот'], reply: "Я твій ігровий бро! Допомагаю не витратити гроші на нудні ігри. Тільки хіти!" },
+        { keywords: ['купити', 'оформити'], reply: "Все просто: додавай гру до кошика 🛒 (іконка вгорі), а потім тисни 'Оформити'. Доставка ключа — миттєва!" }
+    ];
+
+    function botReply(text) {
+        typing.style.display = 'block';
+        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+
+        setTimeout(() => {
+            typing.style.display = 'none';
+            let msg = text.toLowerCase();
+            let foundReply = "Цікаве питання! На жаль, я поки вчуся, але можу сказати одне — всі ігри у нашому списку точно варті твоєї уваги. Спробуй запитати про конкретну гру!";
+
+            for (let s of scenarios) {
+                if (s.keywords.some(k => msg.includes(k))) {
+                    foundReply = s.reply;
+                    break;
+                }
+            }
+            addMessage(foundReply, 'bot');
+        }, 1500);
+    }
+
+    function addMessage(text, type) {
+        const div = document.createElement('div');
+        div.innerText = text;
+        div.style.padding = '12px';
+        div.style.borderRadius = type === 'user' ? '15px 15px 0 15px' : '15px 15px 15px 0';
+        div.style.maxWidth = '85%';
+        div.style.lineHeight = '1.4';
+        
+        if(type === 'user') {
+            div.style.background = 'linear-gradient(45deg, #4b2bff, #6e52ff)';
+            div.style.alignSelf = 'flex-end';
+        } else {
+            div.style.background = '#252525';
+            div.style.alignSelf = 'flex-start';
+        }
+        chatMsgs.appendChild(div);
+        chatMsgs.scrollTop = chatMsgs.scrollHeight;
+    }
+
+    chatSend.onclick = () => {
+        if(!chatInput.value.trim()) return;
+        addMessage(chatInput.value, 'user');
+        botReply(chatInput.value);
+        chatInput.value = '';
+    };
+
+    chatInput.onkeypress = (e) => { if(e.key === 'Enter') chatSend.onclick(); };
+</script>
+
 </body>
 </html>
 
