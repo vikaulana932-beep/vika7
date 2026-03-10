@@ -164,8 +164,10 @@
             font-size: 1.2rem; font-weight: bold; cursor: pointer; margin-top: 20px; width: 100%;
         }
 
-        .close-btn { position: absolute; top: 15px; right: 20px; color: #888; cursor: pointer; font-size: 1.5rem; }
-    </style>
+        .close-btn { position: absolute; top: 15px; right: 20px; color: #888; cursor: pointer; font-size: 1.5rem; } 
+
+
+    </style> 
 </head>
 <body>
 
@@ -189,7 +191,60 @@
         <p>Обирай свою наступну пригоду</p>
         <div class="search-container">
             <input type="text" id="gameSearch" placeholder="Пошук гри...">
-        </div>
+        </div> 
+
+
+
+
+<div class="genres-section">
+    <button class="genre-item">Усі</button>
+    <button class="genre-item">Екшн</button>
+    <button class="genre-item">RPG</button>
+    <button class="genre-item">Шутери</button>
+    <button class="genre-item">Стратегії</button>
+    <button class="genre-item">Пригоди</button>
+</div>
+
+<style>
+    .genres-section {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .genre-item {
+        background: var(--card-bg);
+        color: var(--text);
+        border: 1px solid var(--border);
+        padding: 10px 22px;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .genre-item:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(75, 43, 255, 0.3);
+    }
+
+    
+    .genre-item.active {
+        background: linear-gradient(45deg, var(--primary), var(--secondary));
+        border: none;
+        color: white;
+    }
+</style>
+
     </header>
 
     <div class="container" id="shop"></div>
@@ -206,25 +261,140 @@
         </div>
     </div>
 
-    <script>
-        const games = [
-            { id: 1, name: "Cyberpunk 2077", price: 899, rating: 5, img: "https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpg", desc: "Відкритий світ майбутнього у Найт-Сіті.", reviews: ["Найкраща гра про майбутнє!", "Графіка космос 🚀", "Сюжет затягнув на 100 годин."] },
-            { id: 2, name: "Elden Ring", price: 1599, rating: 5, img: "https://img.youtube.com/vi/a8k8R0Q2ubY/maxresdefault.jpg", desc: "Епічна пригода в Міжзем'ї.", reviews: ["Дуже складно, але круто!", "GOTY без заперечень.", "Світ гри неймовірний."] },
-            { id: 3, name: "The Witcher 3", price: 499, rating: 5, img: "https://staticdelivery.nexusmods.com/mods/952/images/thumbnails/4996/4996-1595252155-1133603551.jpeg", desc: "Легендарна історія Геральта.", reviews: ["Класика на всі часи.", "Кращі квести в історії RPG.", "Музика — це щось!"] },
-            { id: 4, name: "God of War", price: 1199, rating: 4, img: "https://static0.gamerantimages.com/wordpress/wp-content/uploads/2024/12/mixcollage-08-dec-2024-01-22-pm-530.jpg", desc: "Шлях Кратоса та Атрея.", reviews: ["Боївка дуже соковита.", "Постановка на вищому рівні.", "Сильна історія про батька і сина."] },
-            { id: 5, name: "GTA V", price: 1537, rating: 5, img: "https://tse2.mm.bing.net/th/id/OIP.SebWKPO36WWlvFk3eu80FgAAAA?w=205&h=256&rs=1&pid=ImgDetMain&o=7&rm=3", desc: "Кримінал у Лос-Сантосі.", reviews: ["Завжди весело!", "Онлайн — це окремий світ.", "Кращий симулятор хаосу."] },
-            { id: 6, name: "S.T.A.L.K.E.R. 2", price: 2549, rating: 5, img: "https://upload.wikimedia.org/wikipedia/ru/5/5c/S.T.A.L.K.E.R._2_Logo.png", desc: "Зона відчуження чекає.", reviews: ["Рідна атмосфера Зони.", "Батони тепер ще реалістичніші.", "Графіка — справжній некстген."] },
-            { id: 7, name: "Spider-Man 2", price: 1999, rating: 5, img: "https://upload.wikimedia.org/wikipedia/ru/8/8e/Marvel%E2%80%99sSpiderMan2.png", desc: "Пітер та Майлз проти Венома.", reviews: ["Польоти по Нью-Йорку вражають.", "Веном дуже крутий.", "Грається на одному диханні."] },
-            { id: 8, name: "Red Dead Redemption 2", price: 1249, rating: 5, img: "https://upload.wikimedia.org/wikipedia/ru/0/03/Red_Dead_Redemption_2_coverart.jpg", desc: "Епопея про Дикий Захід.", reviews: ["Найкращий сюжет у відеоіграх.", "Артур Морган — легенда.", "Деталізація просто божевільна."] },
-            { id: 9, name: "Hogwarts Legacy", price: 1799, rating: 4, img: "https://upload.wikimedia.org/wikipedia/ru/3/33/Hogwarts_Legacy_cover.jpg", desc: "Ваш шлях у Гоґвортсі.", reviews: ["Мрія дитинства здійснилася!", "Дуже гарний замок.", "Магія відчувається круто."] },
-            { id: 10, name: "Forza Horizon 5", price: 1399, rating: 5, img: "https://store-images.s-microsoft.com/image/apps.56329.13734397844529069.202e3fc9-37d6-4853-a58b-fabe504b71e8.b2447b97-7903-48de-8a49-9669d0495c4f?h=210", desc: "Фестиваль швидкості в Мексиці.", reviews: ["Краща гоночна гра.", "Машини звучать ідеально.", "Неймовірні краєвиди."] },
-            { id: 11, name: "Mortal Kombat 1", price: 1699, rating: 5, img: "https://upload.wikimedia.org/wikipedia/ru/f/f4/Mortal_Kombat_1_%282023%29_cover.jpeg", desc: "Нова ера файтингу.", reviews: ["Фаталіті — вогонь!", "Камео-бійці — цікава механіка.", "Сюжетний режим дуже кінематографічний."] },
-            { id: 12, name: "Resident Evil 4", price: 1450, rating: 5, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzcU3ML7bIdwSHZfYyQ2PIBoWexL3n25orIg&s", desc: "Виживання в іспанському селищі.", reviews: ["Зразковий ремейк.", "Леон — красень.", "Екшн та страх у балансі."] },
-            { id: 13, name: "Ghost of Tsushima", price: 1299, rating: 5, img: "https://image.api.playstation.com/vulcan/ap/rnd/202010/0222/niMUubpU9y1PxNvYmDfb8QFD.png", desc: "Шлях самурая на острові Цусіма.", reviews: ["Естетика Японії заворожує.", "Бої на мечах — одні з кращих.", "Вітер як навігатор — геніально."] },
-            { id: 14, name: "The Last of Us Part I", price: 1899, rating: 5, img: "https://upload.wikimedia.org/wikipedia/ru/2/21/The_Last_of_Us_Part_I_-_%D0%9E%D0%B1%D0%BB%D0%BE%D0%B6%D0%BA%D0%B0.png", desc: "Подорож через спустошену Америку.", reviews: ["Гра, яка змушує плакати.", "Емоційний шедевр.", "Ремейк зробив її ідеальною."] },
-            { id: 15, name: "Minecraft", price: 799, rating: 5, img: "https://i.redd.it/jncj9eqr9bad1.jpeg", desc: "Твій світ — твої правила.", reviews: ["Гра для будь-якого віку.", "Тут можна побудувати все.", "Безкінечні пригоди."] },
-            { id: 16, name: "Starfield", price: 1500, rating: 3, img: "https://upload.wikimedia.org/wikipedia/ru/thumb/9/97/Starfield_2022.png/330px-Starfield_2022.png", desc: "Космічна подорож серед зірок.", reviews: ["Масштабно, але іноді порожньо.", "Для фанатів ігор Bethesda.", "Кораблі будувати цікаво."] }
-        ];
+    <script> 
+
+
+
+window.gameStore = [
+    { title: "Cyberpunk 2077", genre: "Екшн", price: 899, rating: 5, desc: "Майбутнє вже тут.", img: "https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpg", reviews: [{user: "V_Hunter", text: "Гра року!"}, {user: "Silverhand", text: "Прокинься, самурай!"}] },
+    { title: "The Witcher 3", genre: "RPG", price: 550, rating: 5, desc: "Найкраща RPG століття.", img: "https://staticdelivery.nexusmods.com/mods/952/images/thumbnails/4996/4996-1595252155-1133603551.jpeg", reviews: [{user: "Geralt", text: "Ніяк ви не навчитеся..."}, {user: "Ciri", text: "10/10"}] },
+    { title: "CS 2", genre: "Шутери", price: 0, rating: 5, desc: "Легендарний тактичний шутер.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTjaHPErWlltkGzzy2gDUaM9abGnpaVTo5Fg&s", reviews: [{user: "GlobalElite", text: "Тільки скіни дорогі."}] },
+    { title: "Dota 2", genre: "Стратегії", price: 0, rating: 4, desc: "Битва древніх.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlcSP-l1bnas4nAPnZPRVSzmD4p7A3LkoKYg&s", reviews: [{user: "Pudge", text: "Свіже м'ясо!"}] },
+    { title: "Elden Ring", genre: "RPG", price: 1400, rating: 5, desc: "Світ від Хідетаки Міядзакі.", img: "https://upload.wikimedia.org/wikipedia/ru/thumb/7/7c/Elden_Ring_-_cover.jpg/330px-Elden_Ring_-_cover.jpg", reviews: [{user: "Tarnished", text: "Дуже складно, але круто."}] },
+    { title: "GTA V", genre: "Екшн", price: 600, rating: 5, desc: "Пограбування у Лос-Сантосі.", img: "https://tse2.mm.bing.net/th/id/OIP.SebWKPO36WWlvFk3eu80FgAAAA?w=205&h=256&rs=1&pid=ImgDetMain&o=7&rm=3", reviews: [{user: "Franklin", text: "Класика."}] },
+    { title: "God of War", genre: "Екшн", price: 950, rating: 5, desc: "Пригода Кратоса.", img: "https://upload.wikimedia.org/wikipedia/ru/6/6e/God_of_War-_Ragnar%C3%B6k.jpg", reviews: [{user: "Atreus", text: "Батьку!"}] },
+    { title: "Minecraft", genre: "Пригоди", price: 800, rating: 5, desc: "Будуй свою мрію.", img: "https://i.redd.it/jncj9eqr9bad1.jpeg", reviews: [{user: "Steve", text: "Квадратний світ!"}] },
+    { title: "RDR 2", genre: "Пригоди", price: 1100, rating: 5, desc: "Дикий Захід.", img: "https://cdn1.epicgames.com/epic/offer/RDR2PC1227_Epic%20Games_860x1148-860x1148-b4c2210ee0c3c3b843a8de399bfe7f5c.jpg", reviews: [{user: "Arthur", text: "I have a plan!"}] },
+    { title: "Hogwarts Legacy", genre: "RPG", price: 1200, rating: 5, desc: "Магія чекає.", img: "https://image.api.playstation.com/vulcan/ap/rnd/202503/2716/f6b1e4512ee6061913f7d604da8f5f39566be56ca32a68ee.png", reviews: [{user: "PotterFan", text: "Нарешті мій лист прийшов!"}] },
+    { title: "Apex Legends", genre: "Шутери", price: 0, rating: 4, desc: "Королівська битва.", img: "https://cdn1.epicgames.com/spt-assets/5dcd88f4e2094a698ebffa43438edc33/apex-legends-1f4hz.jpg", reviews: [{user: "Wraith", text: "Швидкий геймплей."}] },
+    { title: "Valorant", genre: "Шутери", price: 0, rating: 4, desc: "Тактика та магія.", img: "https://cdn1.epicgames.com/offer/cbd5b3d310a54b12bf3fe8c41994174f/EGS_VALORANT_RiotGames_S2_1200x1600-773ea2de7951435e977ba5f5f6934442", reviews: [{user: "Sage", text: "Тільки для про."}] },
+    { title: "Diablo IV", genre: "RPG", price: 1600, rating: 4, desc: "Темний світ Санктуарію.", img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf38vcf0vkKVCozHitV0K07XcP0_uKtbHGsQ&s", reviews: [{user: "Lilith_Stalker", text: "Дуже атмосферно."}] },
+    { title: "StarCraft II", genre: "Стратегії", price: 0, rating: 5, desc: "Найкраща RTS.", img: "https://upload.wikimedia.org/wikipedia/ru/0/07/StarCraft_II.jpg", reviews: [{user: "ZergRush", text: "Керріган на зв'язку."}] },
+    { title: "Uncharted 4", genre: "Пригоди", price: 750, rating: 5, desc: "Фінал Дрейка.", img: "https://upload.wikimedia.org/wikipedia/ru/5/58/Uncharted_4_cover.jpg", reviews: [{user: "Nate", text: "Sic Parvis Magna."}] } 
+    ,{ title:  "S.T.A.L.K.E.R. 2", genre: "Пригоди", price: 2540, rating: 5, desc:"Пригоди чорнобиля", img: "https://upload.wikimedia.org/wikipedia/ru/5/5c/S.T.A.L.K.E.R._2_Logo.png", reviews:  "Зона відчуження чекає.", reviews: [{ user: "Сталкер мен", text:"прикрасна гра про чорнобиль" }] },
+];
+
+let  = [];
+
+
+window.openModal = function(index) {
+    const game = window.gameStore[index];
+    document.getElementById('m-title').innerText = game.title;
+    document.getElementById('m-desc').innerText = game.desc;
+    document.getElementById('m-stars').innerText = "⭐".repeat(game.rating);
+    
+    
+    const reviewsBox = document.querySelector('.comments-box');
+    reviewsBox.innerHTML = '<h4>Відгуки:</h4>' + game.reviews.map(r => `
+        <div class="comment-item">
+            <div class="comment-user">${r.user}</div>
+            <div class="comment-text">${r.text}</div>
+        </div>`).join('');
+
+    
+    const buyBtn = document.querySelector('.modal-content .buy-btn');
+    buyBtn.innerText = `ДОДАТИ В КОШИК (${game.price} грн)`;
+    buyBtn.onclick = () => addToCart(index);
+
+    document.getElementById('modal').style.display = 'flex';
+};
+
+window.closeModal = () => document.getElementById('modal').style.display = 'none';
+
+
+function addToCart(index) {
+    const game = window.gameStore[index];
+    cart.push(game);
+    updateCartUI();
+    alert(`${game.title} додано до кошика!`);
+}
+
+function updateCartUI() {
+    const cartCount = document.getElementById('cart-count');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cart-total');
+    
+    cartCount.innerText = cart.length;
+    cartItems.innerHTML = cart.map((item, i) => `
+        <div class="cart-item">
+            <span>${item.title}</span>
+            <span>${item.price} грн</span>
+        </div>`).join('');
+    
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    cartTotal.innerText = total;
+}
+
+
+function renderStore(filter = "Усі") {
+    const shop = document.getElementById('shop');
+    shop.innerHTML = "";
+    window.gameStore.forEach((game, index) => {
+        if (filter !== "Усі" && game.genre !== filter) return;
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.onclick = () => window.openModal(index);
+        card.innerHTML = `
+            <img src="${game.img}" alt="${game.title}">
+            <div class="game-info">
+                <h3>${game.title}</h3>
+                <p style="color: var(--secondary); font-weight:bold;">${game.genre}</p>
+                <p>${game.price > 0 ? game.price + ' грн' : 'Безкоштовно'}</p>
+                <button class="buy-btn">ДЕТАЛЬНІШЕ</button>
+            </div>`;
+        shop.appendChild(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderStore();
+    document.querySelectorAll('.genre-item').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            document.querySelectorAll('.genre-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderStore(btn.textContent.trim());
+        });
+    });
+});
+
+function toggleTheme() { document.body.classList.toggle('light-theme'); }
+function toggleCart() { document.getElementById('cartOverlay').classList.toggle('active'); }
+function checkout() { alert('Замовлення оформлено! Дякуємо!'); cart = []; updateCartUI(); toggleCart(); }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('gameSearch');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase().trim();
+            const cards = document.querySelectorAll('.game-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').innerText.toLowerCase();
+                
+                if (title.includes(searchTerm)) {
+                    card.style.display = 'block';
+                    card.style.animation = 'fadeInUp 0.3s ease-out';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    }
+});
+
 
         let cart = [];
         const shop = document.getElementById('shop');
