@@ -315,7 +315,7 @@
     <div id="chat-window" style="display: none; width: 320px; height: 450px; background: #1a1a1a; border: 1px solid #333; border-radius: 20px; flex-direction: column; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.6);">
         <div style="background: linear-gradient(to right, #4b2bff, #ff416c); color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center;">
             <div>
-                <div style="font-weight: bold; font-size: 14px;">Гейм-консультант вася </div>
+                <div style="font-weight: bold; font-size: 14px;">Гейм-консультант вася</div>
                 <div style="font-size: 10px; opacity: 0.8;">● В мережі (відповідає миттєво)</div>
             </div>
             <span id="chat-close" style="cursor: pointer; font-size: 24px;">&times;</span>
@@ -351,7 +351,7 @@
         { keywords: ['elden ring', 'елден'], reply: "О, ти любиш хардкор? Elden Ring — це гра року. Буде складно, але воно того варте!" },
         { keywords: ['дякую', 'спасибі'], reply: "Завжди радий допомогти! Якщо обереш гру — просто тисни кнопку 'Додати в кошик'. Вдалих забігів! 🎮" },
         { keywords: ['хто ти', 'бот'], reply: "Я твій ігровий бро! Допомагаю не витратити гроші на нудні ігри. Тільки хіти!" },
-        { keywords: ['купити', 'оформити'], reply: "Все просто: додавай гру до кошика 🛒 (іконка вгорі), а потім тисни 'Оформити'. Доставка ключа — миттєва!" }
+        { keywords: ['купити', 'оформити'], reply: "Все просто: додавай гру до кошика 🛒 (іконка вгорі), а потім тисни оформити і грай вкруті ігри" }
     ];
 
     function botReply(text) {
@@ -404,5 +404,4 @@
 
 </body>
 </html>
-
  
