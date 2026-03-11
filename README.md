@@ -245,6 +245,337 @@
     }
 </style>
 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #4b2bff;
+            --secondary: #ff416c;
+            --bg: #0f0f0f;
+            --card-bg: #1e1e1e;
+            --text: #ffffff;
+            --gold: #ffca08;
+            --border: #333;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+        }
+
+        .rating-trigger {
+            position: fixed;
+            bottom: 25px;
+            left: 25px;
+            width: 55px; 
+            height: 55px;
+            border-radius: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px; 
+            box-shadow: 0 5px 20px rgba(0,0,0,0.6);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .rating-trigger:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(75, 43, 255, 0.5);
+        }
+
+        .rs-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rs-modal {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            width: 600px; 
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+            animation: slideIn 0.4s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.95) translateY(20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .rs-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            font-size: 19px;
+        }
+
+        .game-name { font-weight: 500; }
+
+        .rs-stars { 
+            color: var(--gold); 
+            font-size: 18px; 
+            letter-spacing: 4px;
+            text-shadow: 0 0 12px rgba(255, 202, 8, 0.4);
+        }
+
+        .empty-star { color: #333; text-shadow: none; }
+
+        .rs-close {
+            background: #2a2a2a;
+            border: 1px solid var(--border);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: block;
+            margin: 30px auto 0;
+            transition: 0.3s;
+        }
+
+        .rs-close:hover { 
+            background: var(--secondary);
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        .rs-modal::-webkit-scrollbar { width: 6px; }
+        .rs-modal::-webkit-scrollbar-thumb { background: #444; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <button class="rating-trigger" onclick="toggleRS(true)">★</button> 
+    <div id="rsModal" class="rs-overlay" onclick="if(event.target===this) toggleRS(false)">
+        <div class="rs-modal">
+            <div class="rs-list">
+                
+                <div class="rs-item"><span class="game-name">Cyberpunk 2077</span><span class="rs-stars">★★★★★</span></div>
+                <div class="rs-item"><span class="game-name">The Witcher 3: Wild Hunt</span><span class="rs-stars">★★★★★</span></div>
+                <div class="rs-item"><span class="game-name">GTA V (Premium Edition)</span><span class="rs-stars">★★★★★<span class="empty-star"></span></span></div>
+                <div class="rs-item"><span class="game-name">CS 2</span><span class="rs-stars">★★★★★</span></div>
+                <div class="rs-item"><span class="game-name">Dota 2</span><span class="rs-stars">★★★★★</span></div>
+                <div class="rs-item"><span class="game-name">Elden Ring</span><span class="rs-stars">★★★★★</span></div>
+                <div class="rs-item"><span class="game-name">Minecraft</span><span class="rs-stars">★★★★<span class="empty-star">★</span></span></div>
+                <div class="rs-item"><span class="game-name">God of War</span><span class="rs-stars">★★★★<span class="empty-star">★</span></span></div>
+                <div class="rs-item"><span class="game-name">RDR 2</span><span class="rs-stars">★★★★<span class="empty-star">★</span></span></div>
+                <div class="rs-item"><span class="game-name">Hogwarts Legacy</span><span class="rs-stars">★★★★<span class="empty-star">★</span></span></div>
+                <div class="rs-item"><span class="game-name">Diablo IV</span><span class="rs-stars">★★★<span class="empty-star">★★</span></span></div>
+                <div class="rs-item"><span class="game-name">Uncharted 4</span><span class="rs-stars">★★★<span class="empty-star">★★</span></span></div>
+            </div>
+
+            <button class="rs-close" onclick="toggleRS(false)">ЗАКРИТИ</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleRS(show) {
+            const modal = document.getElementById('rsModal');
+            modal.style.display = show ? 'flex' : 'none';
+        }
+    </script>
+
+</body>
+</html>
+
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --primary: #4b2bff;
+            --secondary: #ff416c;
+            --bg: #0f0f0f;
+            --card-bg: #1e1e1e;
+            --text: #ffffff;
+            --border: #333;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+        }
+
+        .top-left-nav {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1001;
+        }
+
+        .about-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 12px 24px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            transition: 0.3s ease;
+        }
+
+        .about-btn:hover {
+            border-color: var(--primary);
+            background: var(--primary);
+            transform: scale(1.05);
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 50px; /
+            border-radius: 30px;
+            border: 1px solid var(--border);
+            width: 550px; 
+            text-align: center;
+            box-shadow: 0 30px 70px rgba(0,0,0,1);
+            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: scale(0.9) translateY(-20px); }
+            to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        h2 { 
+            color: var(--primary); 
+            margin: 0 0 25px; 
+            font-size: 32px; 
+            letter-spacing: 1px;
+        }
+
+        .about-description {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #bbb;
+            margin-bottom: 30px;
+        }
+
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.04);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: left;
+            margin: 20px 0;
+        }
+
+        .contact-item {
+            margin: 12px 0;
+            font-size: 17px; /* Збільшений текст контактів */
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+        }
+
+        .contact-item:last-child { border: none; }
+
+        .contact-label { color: var(--secondary); font-weight: 600; }
+
+    
+        .close-btn {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #777;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 13px;
+            margin-top: 25px;
+            transition: 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+            border-color: var(--secondary);
+            background: rgba(255, 65, 108, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-left-nav">
+        <button class="about-btn" onclick="toggleAbout(true)">ℹ️ Про нас</button>
+    </div>
+
+    <div id="aboutModal" class="modal-overlay" onclick="if(event.target===this) toggleAbout(false)">
+        <div class="modal-content">
+            <h2>Ultimate GameStore</h2>
+            
+            <p class="about-description">
+                Ми забезпечуємо найкращий ігровий досвід, надаючи миттєвий доступ до ліцензійних ключів та ексклюзивного контенту.
+            </p>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-label">📞 Телефон:</span>
+                    <span>+380 (99) 123-45-67</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">✈️ Telegram:</span>
+                    <span>@gamestore_admin</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">🎮 Discord:</span>
+                    <span>GameStore#0001</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">📧 Email:</span>
+                    <span>support@gamestore.ua</span>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-label">⏰ Режим:</span>
+                    <span>Працюємо 24/7</span>
+                </div>
+            </div>
+
+            <button class="close-btn" onclick="toggleAbout(false)">ЗАКРИТИ</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleAbout(show) {
+            document.getElementById('aboutModal').style.display = show ? 'flex' : 'none';
+        }
+    </script>
+
     </header>
 
     <div class="container" id="shop"></div>
@@ -574,4 +905,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
- 
