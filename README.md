@@ -152,6 +152,7 @@
             border: 2px solid var(--primary);
         }
 
+
         .stars { color: #ffd700; font-size: 1.5rem; margin: 10px 0; letter-spacing: 5px; }
         .comments-box { text-align: left; margin-top: 20px; background: rgba(128,128,128,0.1); padding: 15px; border-radius: 15px; }
         .comment-item { margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 5px; }
@@ -457,17 +458,6 @@
             align-items: center;
         }
 
-        .modal-content {
-            background: var(--card-bg);
-            padding: 50px; /
-            border-radius: 30px;
-            border: 1px solid var(--border);
-            width: 550px; 
-            text-align: center;
-            box-shadow: 0 30px 70px rgba(0,0,0,1);
-            animation: slideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
         @keyframes slideIn {
             from { opacity: 0; transform: scale(0.9) translateY(-20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
@@ -498,7 +488,7 @@
 
         .contact-item {
             margin: 12px 0;
-            font-size: 17px; /* Збільшений текст контактів */
+            font-size: 17px; 
             display: flex;
             justify-content: space-between;
             border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -574,10 +564,96 @@
         function toggleAbout(show) {
             document.getElementById('aboutModal').style.display = show ? 'flex' : 'none';
         }
-    </script>
+    </script> 
+
+<button class="icon-btn" onclick="toggleNews()">📢 Новини 2026</button>
+
+<div id="newsModal" style="
+    display: none; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%; 
+    background: rgba(0,0,0,0.9); 
+    backdrop-filter: blur(15px); 
+    z-index: 10000; 
+    justify-content: center; 
+    align-items: center;">
+    
+    <div style="
+        background: #1e1e1e; 
+        padding: 35px; 
+        border-radius: 30px; 
+        max-width: 600px; 
+        width: 90%; 
+        border: 2px solid #4b2bff; 
+        position: relative; 
+        color: white;
+        box-shadow: 0 0 30px rgba(75, 43, 255, 0.5);">
+        
+        <span onclick="toggleNews()" style="position: absolute; top: 15px; right: 25px; cursor: pointer; font-size: 35px; color: #888;">&times;</span>
+        
+        <h2 style="text-align: center; margin-bottom: 25px; background: linear-gradient(to right, #4b2bff, #ff416c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-size: 24px;">
+            Новини нашого магазину — Березень 2026
+        </h2>
+
+        <div style="max-height: 450px; overflow-y: auto; padding-right: 15px;">
+            
+            <h3 style="color: #00ff88; border-left: 4px solid #00ff88; padding-left: 10px; font-size: 18px;">✅ ВЖЕ З'ЯВИЛИСЯ</h3>
+            <div style="margin: 15px 0; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;">
+                <h4 style="margin: 0;">Cyber Adventure: Neon City</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">Офіційний реліз повної версії 2026. Вже доступна для завантаження на нашому сайті!</p>
+            </div>
+            <div style="margin: 15px 0; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;">
+                <h4 style="margin: 0;">Undead Survival: Last Night</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">Додано новий режим кооперативу. Клич друзів та виживай разом!</p>
+            </div>
+
+            <h3 style="color: #ffca08; border-left: 4px solid #ffca08; padding-left: 10px; margin-top: 30px; font-size: 18px;">⏳ БУДУТЬ НЕЗАБАРОМ</h3>
+            <div style="margin: 15px 0; border: 1px dashed #ffca08; padding: 15px; border-radius: 15px;">
+                <span style="color: #ffca08; font-size: 0.8rem;">РЕЛІЗ: 25 БЕРЕЗНЯ</span>
+                <h4 style="margin: 5px 0;">Star Hunter: Deep Space</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">Космічні пригоди нового покоління. Додамо в каталог через кілька днів.</p>
+            </div>
+            <div style="margin: 15px 0; border: 1px dashed #ffca08; padding: 15px; border-radius: 15px;">
+                <span style="color: #ffca08; font-size: 0.8rem;">РЕЛІЗ: КВІТЕНЬ 2026</span>
+                <h4 style="margin: 5px 0;">Shadow Strike: Reborn</h4>
+                <p style="color: #ccc; font-size: 0.9rem;">Повернення легендарного стелс-екшену. Вже готуємо сторінку передзамовлення.</p>
+            </div>
+        </div>
+
+        <button onclick="toggleNews()" style="
+            width: 100%; 
+            margin-top: 25px; 
+            padding: 15px; 
+            border-radius: 50px; 
+            background: linear-gradient(45deg, #4b2bff, #ff416c); 
+            border: none; 
+            color: white; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 16px;">
+            ЗАКРИТИ
+        </button>
+    </div>
+</div>
+
+<script>
+  
+    function toggleNews() {
+        const modal = document.getElementById('newsModal');
+        if (modal.style.display === 'none' || modal.style.display === '') {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        } else {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+    }
+</script>
 
     </header>
-
     <div class="container" id="shop"></div>
  
     <div class="modal-overlay" id="modal">
@@ -593,8 +669,6 @@
     </div>
 
     <script> 
-
-
 
 window.gameStore = [
     { title: "Cyberpunk 2077", genre: "Екшн", price: 899, rating: 5, desc: "Майбутнє вже тут.", img: "https://www.cyberpunk.net/build/images/social-thumbnail-en-ddcf4d23.jpg", reviews: [{user: "V_Hunter", text: "Гра року!"}, {user: "Silverhand", text: "Прокинься, самурай!"}] },
