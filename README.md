@@ -586,7 +586,7 @@
             <p class="about-description">
                 Ми забезпечуємо найкращий ігровий досвід, надаючи миттєвий доступ до ліцензійних ключів та ексклюзивного контенту.
             </p>
-
+     
             <div class="contact-info">
                 <div class="contact-item">
                     <span class="contact-label">📞 Телефон:</span>
@@ -609,7 +609,7 @@
                     <span>Працюємо 24/7</span>
                 </div>
             </div>
-
+         <h3> головна😎 бєдна  вікторія </h3>
             <button class="close-btn" onclick="toggleAbout(false)">ЗАКРИТИ</button>
         </div>
     </div>
@@ -1081,3 +1081,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
+
